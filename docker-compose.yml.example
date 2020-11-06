@@ -1,0 +1,129 @@
+version: '3.3'
+services:
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
+    container_name: es01
+    restart: always
+    environment:
+      - node.name=es01
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms8g -Xmx8g"
+      - path.repo=/snapshots
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - esdata01:/usr/share/elasticsearch/data
+      - esdata01:/snapshots
+    ports:
+      - 9200:9200
+    networks:
+      - esnet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.9.3
+    container_name: kibana
+    restart: always
+    depends_on:
+      - es01
+    environment:
+      SERVER_NAME: kibana
+      ELASTICSEARCH_HOSTS: http://es01:9200
+    ports:
+      - 5601:5601
+    networks:
+      - esnet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+  logstash:
+    image: docker.elastic.co/logstash/logstash:7.9.3
+    container_name: logstash
+    restart: always
+    environment:
+      - ELASTICSEARCH_HOST=es01
+      - pipeline.batch.size=125
+      - config.reload.automatic=true
+      - queue.type=persisted
+      - "LS_JAVA_OPTS:-Xmx4g-Xms4g"
+    ports:
+      - 5044:5044
+      - 5045:5045
+      - 6050:6050
+    volumes:
+      -  /usr/share/logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml:ro
+      -  /usr/share/logstash/configs:/usr/share/logstash/configs:ro
+      -  /usr/share/logstash/plugins/translate:/opt/elastic_stack/logstash/translate:ro
+      -  /usr/share/logstash/rules:/etc/nsm/rules:ro
+      -  /usr/share/logstash/persistent_data:/usr/share/logstash/data
+      -  /usr/share/logstash/dictionaries:/etc/logstash/dictionaries:ro
+    networks:
+      - esnet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+  domain_stats:
+    image: hasecuritysolutions/domain_stats:v1.0
+    container_name: domain_stats
+    restart: always
+    ports:
+      - 20000:20000
+    networks:
+      - esnet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+  cerebro:
+    image: lmenezes/cerebro:0.9.2
+    container_name: cerebro
+    depends_on:
+      - es01
+    ports:
+      - 9000:9000
+    networks:
+      - esnet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+  elastalert:
+    image: bitsensor/elastalert:3.0.0-beta.1
+    ports:
+      - 3030:3030
+      - 3333:3333
+    container_name: elastalert
+    restart: always
+    depends_on:
+      - es01
+    volumes:
+      -  /usr/share/elastalert/config.yaml:/opt/elastalert/config.yaml
+      -  /usr/share/elastalert/elastalert-server/config/config.json:/opt/elastalert-server/config/config.json
+      -  /usr/share/elastalert/rules:/opt/elastalert/rules
+      -  /usr/share/elastalert/rule_templates:/opt/elastalert/rule_templates
+    networks:
+      - esnet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+volumes:
+  esdata01:
+    driver: local
+networks:
+  esnet:
+    driver: bridge
+
