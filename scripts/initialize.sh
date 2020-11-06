@@ -35,8 +35,6 @@ sudo chown 1000:1000 -R /usr/share/logstash/
 cp -r /opt/elasticsearch/logstash/logstash_configs/* /usr/share/logstash/configs/
 cp -r /opt/elasticsearch/logstash/dictionaries/* /usr/share/logstash/dictionaries/
 cp -f /opt/elasticsearch/logstash/pipelines.yml.example /usr/share/logstash/config/pipelines.yml
-cp -r /opt/elasticsearch/logstash/rules/* /usr/share/logstash/rules/
-
 
 ############################################################
 # Elastalert Pre-Config
