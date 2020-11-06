@@ -25,13 +25,13 @@ sudo apt-get install -y wget
 cd /opt
 
 # Download the prerequisites script and run in bash
-sudo wget https://github.com/slteksystemsllc/elastic_stack/raw/master/scripts/prereq.sh && sudo bash prereq.sh
+sudo wget https://github.com/slteksystemsllc/elasticsearch_siem/raw/master/scripts/prereq.sh && sudo bash prereq.sh
 
 # Download the initialization script and run in bash
-sudo wget https://github.com/slteksystemsllc/elastic_stack/raw/master/scripts/initialize.sh && sudo bash initialize.sh
+sudo wget https://github.com/slteksystemsllc/elasticsearch_siem/raw/master/scripts/initialize.sh && sudo bash initialize.sh
 
-# Navigate to /opt/elastic_stack/ and run the following command.  This will start the stack in daemon mode.
-cd /opt/elastic_stack/
+# Navigate to /opt/elasticsearch_siem/ and run the following command.  This will start the stack in daemon mode.
+cd /opt/elasticsearch_siem/
 sudo docker-compose up -d
 
 # Wait until Elasticsearch is running then run this bsah script to install elasticsearch index's
@@ -39,5 +39,5 @@ bash elasticsearch/indexes/import.sh
 
 ## Completely hands off install
 Script runs all of the above commands in one run
-sudo wget https://github.com/slteksystemsllc/elastic_stack/raw/master/automated_install.sh && sudo bash automated_install.sh
+sudo wget https://github.com/slteksystemsllc/elasticsearch_siem/raw/master/automated_install.sh && sudo bash automated_install.sh
 ```
