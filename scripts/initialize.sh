@@ -1,6 +1,10 @@
 #!/bin/bash
 cd /opt/
 
+# Set hostname for sinlge node Elasticsearch
+hostnamectl set-hostname "es01. local"
+exec bash
+
 git clone https://github.com/slteksystemsllc/elasticsearch_siem.git
 
 sudo chown 1000:1000 -R /opt/elasticsearch_siem/
