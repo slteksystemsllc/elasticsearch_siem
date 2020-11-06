@@ -1,0 +1,9 @@
+#* * * * * user-job-runs-as command-being-executed
+#| | | | |
+#| | | | |
+#| | | | +---- Day of the Week   (range: 1-7, 1 standing for Monday)
+#| | | +------ Month of the Year (range: 1-12)
+#| | +-------- Day of the Month  (range: 1-31)
+#| +---------- Hour              (range: 0-23)
+#+------------ Minute            (range: 0-59)
+0 2 * * * elastic-cron /usr/local/bin/curator --config /etc/curator/curator.yaml /etc/curator/forcemerge.yaml >> /home/elastic-cron/logs/forcemerge.log 2>&1
