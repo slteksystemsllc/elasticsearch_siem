@@ -39,5 +39,5 @@ bash elasticsearch/indexes/import.sh
 
 ## Completely hands off install
 Script runs all of the above commands in one run
-sudo wget https://github.com/slteksystemsllc/elasticsearch_siem/blob/master/automated_install.sh && sudo bash automated_install.sh
+sudo wget https://github.com/slteksystemsllc/elasticsearch_siem/blob/main/automated_install.sh && sudo bash automated_install.sh
 ```
