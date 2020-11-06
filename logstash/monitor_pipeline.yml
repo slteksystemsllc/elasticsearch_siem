@@ -1,0 +1,2 @@
+- pipeline.id: monitoring
+  path.config: "/usr/share/logstash/configs/monitoring"
