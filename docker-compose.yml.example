@@ -62,7 +62,6 @@ services:
       -  /usr/share/logstash/config/pipelines.yml:/usr/share/logstash/config/pipelines.yml:ro
       -  /usr/share/logstash/configs:/usr/share/logstash/configs:ro
       -  /usr/share/logstash/plugins/translate:/opt/elastic_stack/logstash/translate:ro
-      -  /usr/share/logstash/rules:/etc/nsm/rules:ro
       -  /usr/share/logstash/persistent_data:/usr/share/logstash/data
       -  /usr/share/logstash/dictionaries:/etc/logstash/dictionaries:ro
     networks:
