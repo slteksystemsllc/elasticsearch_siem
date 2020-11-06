@@ -25,10 +25,10 @@ sudo apt-get install -y wget
 cd /opt
 
 # Download the prerequisites script and run in bash
-sudo wget https://github.com/slteksystemsllc/elasticsearch_siem/blob/main/scripts/prereq.sh && sudo bash prereq.sh
+sudo wget https://github.com/slteksystemsllc/elasticsearch_siem/raw/main/scripts/prereq.sh && sudo bash prereq.sh
 
 # Download the initialization script and run in bash
-sudo wget https://github.com/slteksystemsllc/elasticsearch_siem/raw/master/scripts/initialize.sh && sudo bash initialize.sh
+sudo wget https://github.com/slteksystemsllc/elasticsearch_siem/raw/main/scripts/initialize.sh && sudo bash initialize.sh
 
 # Navigate to /opt/elasticsearch_siem/ and run the following command.  This will start the stack in daemon mode.
 cd /opt/elasticsearch_siem/
@@ -39,5 +39,5 @@ bash elasticsearch/indexes/import.sh
 
 ## Completely hands off install
 Script runs all of the above commands in one run
-sudo wget https://github.com/slteksystemsllc/elasticsearch_siem/blob/main/automated_install.sh && sudo bash automated_install.sh
+sudo wget https://github.com/slteksystemsllc/elasticsearch_siem/raw/main/automated_install.sh && sudo bash automated_install.sh
 ```
