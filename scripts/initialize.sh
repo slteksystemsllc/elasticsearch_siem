@@ -1,9 +1,9 @@
 #!/bin/bash
 cd /opt/
 
-git clone https://github.com/slteksystemsllc/elasticsearch.git
+git clone https://github.com/slteksystemsllc/elasticsearch_siem.git
 
-sudo chown 1000:1000 -R /opt/elasticsearch/
+sudo chown 1000:1000 -R /opt/elasticsearch_siem/
 #######################################################
 # Elasticsearc Pre-Config
 
@@ -13,8 +13,8 @@ mkdir -p /usr/share/elasticsearch/data
 
 sudo chown 1000:1000 -R /usr/share/elasticsearch/
 
-cp -f /opt/elasticsearch/docker-compose.yml.example /usr/share/elasticsearch/docker-compose.yml
-cp -f /opt/elasticsearch/cron/custom-cron.example /usr/share/elasticsearch/cron/custom-cron/
+cp -f /opt/elasticsearch_siem/docker-compose.yml.example /usr/share/elasticsearch/docker-compose.yml
+cp -f /opt/elasticsearch_siem/cron/custom-cron.example /usr/share/elasticsearch/cron/custom-cron/
 
 #########################################################
 # Logstash Pre-Config 
@@ -32,9 +32,9 @@ mkdir -p /usr/share/logstash/rules/
 
 sudo chown 1000:1000 -R /usr/share/logstash/
 
-cp -r /opt/elasticsearch/logstash/logstash_configs/* /usr/share/logstash/configs/
-cp -r /opt/elasticsearch/logstash/dictionaries/* /usr/share/logstash/dictionaries/
-cp -f /opt/elasticsearch/logstash/pipelines.yml.example /usr/share/logstash/config/pipelines.yml
+cp -r /opt/elasticsearch_siem/logstash/logstash_configs/* /usr/share/logstash/configs/
+cp -r /opt/elasticsearch_siem/logstash/dictionaries/* /usr/share/logstash/dictionaries/
+cp -f /opt/elasticsearch_siem/logstash/pipelines.yml.example /usr/share/logstash/config/pipelines.yml
 
 ############################################################
 # Elastalert Pre-Config
@@ -47,9 +47,9 @@ mkdir -p /usr/share/elastalert/elastalert-server/config/
 
 sudo chown 1000:1000 -R /usr/share/elastalert/
 
-cp -r /opt/elasticsearch/elastalert/example_rules/* /usr/share/elastalert/rules/
-cp -f /opt/elasticsearch/elastalert/config.yaml.example /usr/share/elastalert/config.yaml
-cp -f /opt/elasticsearch/elastalert/config.json /usr/share/elastalert/elastalert-server/config/config.json
+cp -r /opt/elasticsearch_siem/elastalert/example_rules/* /usr/share/elastalert/rules/
+cp -f /opt/elasticsearch_siem/elastalert/config.yaml.example /usr/share/elastalert/config.yaml
+cp -f /opt/elasticsearch_siem/elastalert/config.json /usr/share/elastalert/elastalert-server/config/config.json
 
 cd /usr/share/elasticsearch/
 
