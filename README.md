@@ -25,7 +25,7 @@ sudo apt-get install -y wget
 cd /opt
 
 # Download the prerequisites script and run in bash
-sudo wget https://github.com/slteksystemsllc/elasticsearch_siem/raw/master/scripts/prereq.sh && sudo bash prereq.sh
+sudo wget https://github.com/slteksystemsllc/elasticsearch_siem/blob/main/scripts/prereq.sh && sudo bash prereq.sh
 
 # Download the initialization script and run in bash
 sudo wget https://github.com/slteksystemsllc/elasticsearch_siem/raw/master/scripts/initialize.sh && sudo bash initialize.sh
