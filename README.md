@@ -15,6 +15,10 @@ Must have Docker installed. An example of how to do this on an Ubuntu 18.04 syst
 
 ```#Assumes you have downloaded and installed Ubuntu 18.04 minimum to start. Follow the rest of the steps below to configure and get up and running
 
+
+sudo apt install net-tools
+
+
 # Once Ubuntu is insalled run update and upgrade commands to update system
 sudo apt-get update -y && sudo apt-get upgrade -y
 
